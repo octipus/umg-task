@@ -1,0 +1,128 @@
+
+
+{% render 'adastra' with 'shoppable.css' %}
+
+<shoppable-image>
+  <div class="image-wrap">
+    {% for block in section.blocks %}
+      {% assign product = block.settings.product %}
+      {% unless product == blank %}
+        <div class="shoppable-wrapper" style="top:{{block.settings.moveTop | append: "%"}};left: {{block.settings.moveLeft | append: "%"}};">
+            <a class="dot dot-{{block.id}}" href="#product"></a>
+            <a class="tooltip" href="#product">
+              <img  src=" {{ product.featured_image.src | image_url }}" alt="{{ product.featured_image.alt }}" width="200" height="200" loading="lazy">
+              <span class="productname">{{product.title}}</span>
+              <span class="short-description">{{product.description}}</span>
+              <span class="price">{{product.price | money}}</span>
+            </a>
+        </div>
+        <style>
+          .dot-{{block.id}} {
+            background: {{block.settings.tooltip-color}};
+          }
+          .dot-{{block.id}}:after {
+            background: {{block.settings.tooltip-color}} ;
+          }
+        </style>
+      {% endunless %}
+    {% endfor %}
+    {% if section.settings.image != blank %}
+      <img
+        style="height:auto;width:100%;"
+        src="{{ section.settings.image | image_url }}"
+        alt="{{ section.settings.image.alt | escape }}"
+        loading="eager"
+        width= "1920"
+        height = "1080"
+      >
+    {% else %}
+      <p>
+        {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+      </p>
+    {% endif %}
+  </div>
+</shoppable-image>
+
+
+{% schema %}
+{
+  "name": "Shoppable Image",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Shoppable Image Settings"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Lookbook"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h1",
+          "label": "H1"
+        },
+        {
+          "value": "h2",
+          "label": "H2"
+        }
+      ],
+      "default": "h1",
+      "label": "Heading Type"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Featured product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Featured product"
+        },
+        {
+          "id": "tooltip-color",
+          "label": "Tooltip color",
+          "default": "#fafafa",
+          "type": "color"
+        },
+        {
+          "id": "moveTop",
+          "type": "range",
+          "unit": "%",
+          "min": 0,
+          "max": 100,
+          "label": "Percent from top",
+          "default": 50,
+          "step": 1
+        },
+        {
+          "id": "moveLeft",
+          "type": "range",
+          "unit": "%",
+          "min": 0,
+          "max": 100,
+          "label": "Percent from left",
+          "default": 50,
+          "step": 1
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shoppable - Image"
+    }
+  ]
+}
+{% endschema %}
