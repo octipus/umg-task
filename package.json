@@ -1,0 +1,19 @@
+{
+  "name": "umg-task-built-with-adastra",
+  "author": "Octavian | oContis Studio",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "dev:shopify": "shopify theme dev -s umg-task.myshopify.com",
+    "preview": "shopify theme open -d",
+    "check": "shopify theme check"
+  },
+  "devDependencies": {
+    "adastra-plugin": "latest",
+    "@shopify/cli": "latest",
+    "@shopify/theme": "latest",
+    "vite": "^4.1.4"
+  }
+}
