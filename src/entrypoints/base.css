@@ -56,6 +56,14 @@ button:focus-visible {
   outline: 4px auto hsla(var(--color-primary) / 1);
 }
 
+button:disabled,
+button[disabled]{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+  cursor: not-allowed;
+}
+
 .container {
   max-width: 800px;
   margin: 0 auto;

@@ -3,13 +3,19 @@
     <h1>{{ section.settings.heading }}</h1>
   {% endif %}
 
-  <hello-world>
-    <button>Counter <output>0</output></button>
-  </hello-world>
 
-  <footer>
-    {{ powered_by_link }}
-  </footer>
+    <a href="{{routes.cart_url}}">Cart <span class="cart-count">0</span></a>
+    <button href="/cart/clear" class="clear-cart">Clear Cart</button>
+</br></br>
+    Cart Items:
+</br>
+    {% for item in cart.items %}
+      <input class="updateItem" data-id="{{item.id}}" value="{{ item.quantity }}" type="number" />
+      {{item.title}} - {{item.quantity}}pcs - {{item.price | money}}
+    </br>
+    {% endfor %}
+
+  
 </section>
 
 {% schema %}

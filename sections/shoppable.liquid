@@ -14,6 +14,11 @@
               <span class="productname">{{product.title}}</span>
               <span class="short-description">{{product.description}}</span>
               <span class="price">{{product.price | money}}</span>
+              {% form 'product', product %}
+                <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant .id }}">
+                <input name="quantity" id="quantity" value="1" type="hidden">
+                <button class="button product-add" type="submit">Add to cart</button>
+              {% endform %}
             </a>
         </div>
         <style>

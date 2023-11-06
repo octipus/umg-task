@@ -3,12 +3,10 @@ export default class ShoppableImage extends window.HTMLElement {
       super()
 
       this.elements = this.querySelectorAll('.shoppable-wrapper')
-      // console.dir(this.elements[0].childNodes[1])
       if (!this.elements) return
 
       this.elements.forEach((el) => {
-        this.dot = el.querySelector('.dot')
-        this.dot.addEventListener('mouseover', () => {
+        el.addEventListener('mouseover', () => {
           el.classList.add("hover-active");
         });
   
@@ -16,7 +14,7 @@ export default class ShoppableImage extends window.HTMLElement {
           el.classList.remove("hover-active");
         });
   
-        this.dot.addEventListener('click', () => {
+        el.addEventListener('click', () => {
           el.classList.add("hover-active");
         });
       });
